@@ -1,8 +1,5 @@
 # DataStructure
 
-## LeetCode
-
-
 ### 哈希表
 ##### LeetCode 简单
 [001_两数之和](LeetCode/001_两数之和.py)
