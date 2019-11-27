@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019/11/23 2:48 上午
 # @Author  : siJi
-# @File    : 0-1背包问题.py
+# @File    : 动态规划_0-1背包问题.py
 # @Desc    : 动态规划
 import numpy as np
 
