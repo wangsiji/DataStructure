@@ -1,5 +1,46 @@
 # DataStructure
 
+### 动态规划 
+##### Other
+[0-1背包问题](Other/动态规划_0-1背包问题.py)
+##### LeetCode 简单
+[053_最大子序和](LeetCode/053_最大子序和.py)
+
+[070_爬楼梯](LeetCode/070_爬楼梯.py)
+
+[198_打家劫舍](LeetCode/198_打家劫舍.py)
+##### LeetCode 中等
+[062_不同路径](LeetCode/062_不同路径.py)
+
+[213_打家劫舍II](LeetCode/213_打家劫舍II.py)
+
+[300_最长上升子序列](LeetCode/300_最长上升子序列.py)
+
+[322_零钱兑换](LeetCode/322_零钱兑换.py)
+
+##### LeetCode 困难
+[072_编辑距离](LeetCode/072_编辑距离.py)
+
+
+### 栈 
+##### Other
+[栈](Other/栈.py)
+
+##### LeetCode 简单
+[020_有效的括号](LeetCode/020_有效的括号.py)
+
+[225_用队列实现栈](LeetCode/225_用队列实现栈.py)
+
+
+### 队列 
+##### Other
+[队列](Other/队列.py)
+
+[队列_双端队列](Other/队列_双端队列.py)
+##### LeetCode 简单
+[232_用栈实现队列](LeetCode/232_用栈实现队列.py)
+
+
 ### 哈希表
 ##### LeetCode 简单
 [001_两数之和](LeetCode/001_两数之和.py)
@@ -16,36 +57,12 @@
 ##### Other
 
 
-### 栈 
-##### Other
-[栈](Other/栈.py)
 
-##### LeetCode 简单
-[020_有效的括号](LeetCode/020_有效的括号.py)
-
-
-### 队列 
-##### Other
-[队列](Other/队列.py)
-
-[队列_双端队列](Other/队列_双端队列.py)
 
  
  
 
-### 动态规划 
-##### Other
-[0-1背包问题](Other/动态规划_0-1背包问题.py)
-##### LeetCode 简单
-[053_最大子序和](LeetCode/053_最大子序和.py)
 
-[070_爬楼梯](LeetCode/070_爬楼梯.py)
-##### LeetCode 中等
-[300_最长上升子序列](LeetCode/300_最长上升子序列.py)
-
-[322_零钱兑换](LeetCode/322_零钱兑换.py)
-##### LeetCode 困难
-[072_编辑距离](LeetCode/072_编辑距离.py)
 
 
 ### 数学

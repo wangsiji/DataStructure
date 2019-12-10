@@ -23,9 +23,10 @@ class Tree(object):
     def add(self, elem):
         """为树添加节点"""
         node = Node(elem)
-        # 如果树是空的，则对根节点赋值
+        # 如果树是空的，则对根节点赋值,返回
         if self.root is None:
             self.root = node
+            return
         else:
             queue = [self.root]
             # 对已有的节点进行层次遍历
@@ -43,4 +44,32 @@ class Tree(object):
                     queue.append(cur.lchild)
                     queue.append(cur.rchild)
 
+    def breadth_travel(self):
+        """
+        广度优先遍历(层次遍历)
+        从树的root开始，从上到下从从左到右遍历整个树的节点
+        利用队列实现树的层次遍历
+        """
+        if self.root == None:
+            return
+        queue = []
+        queue.append(self.root)
+        while queue:
+            node = queue.pop(0)
+            print(node.elem)
+            if node.lchild is not None:
+                queue.append(node.lchild)
+            if node.rchild is not None:
+                queue.append(node.rchild)
 
+
+if __name__ == "__main__":
+    tree = Tree()
+    tree.add(1)
+    tree.add(2)
+    tree.add(3)
+    tree.add(4)
+    tree.add(5)
+    tree.add(6)
+    tree.add(7)
+    print(tree.breadth_travel())

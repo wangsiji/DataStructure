@@ -37,6 +37,7 @@ class Solution(object):
         dp = [[0 for _ in range(len(word2) + 1)] for _ in range(len(word1) + 1)]
         for i in range(len(word1) + 1):
             for j in range(len(word2) + 1):
+                # 第一行、第一列
                 if not i or not j:
                     dp[i][j] = j if j != 0 else i
                 else:

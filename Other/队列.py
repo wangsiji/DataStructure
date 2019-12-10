@@ -22,10 +22,16 @@ class Queue(object):
 
     def enqueue(self, item):
         """进队列"""
+        # O(1)
+        # self.items.append(item)
+        # O(n)
         self.items.insert(0, item)
 
     def dequeue(self):
         """出队列"""
+        # O(n)
+        # return self.items.pop(0)
+        # O(1)
         return self.items.pop()
 
     def size(self):
