@@ -25,17 +25,17 @@ class Solution(object):
         :rtype: str
         """
         """暴力法，超出时间限制，时间复杂度:O(n**3), 空间复杂度:O(1)"""
-        max_len = 0
-        ans = ""
-        if len(s) < 2:
-            return s
-        for i in range(len(s) - 1):
-            for j in range(i+1, len(s)+1):
-                print(i, j, s[i:j])
-                if self.isPalindromic(s[i:j]) and max_len < j-i:
-                    max_len = j-i
-                    ans = s[i:j]
-        return ans
+        # max_len = 0
+        # ans = ""
+        # if len(s) < 2:
+        #     return s
+        # for i in range(len(s) - 1):
+        #     for j in range(i+1, len(s)+1):
+        #         print(i, j, s[i:j])
+        #         if self.isPalindromic(s[i:j]) and max_len < j-i:
+        #             max_len = j-i
+        #             ans = s[i:j]
+        # return ans
 
 
 if __name__ == "__main__":
