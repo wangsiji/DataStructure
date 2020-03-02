@@ -17,6 +17,14 @@
 如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。
 """
 
+"""
+状态方程：
+    dp[i] = max(dp[i-1]+nums[i], nums[i]])
+    0<=i<=n-1
+base case: 
+    dp[-1] = -infinity
+"""
+
 
 class Solution(object):
     def maxSubArray(self, nums):
@@ -24,19 +32,23 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+
+        '''空间复杂度O(n)'''
         if len(nums) < 2:
-            return nums
-        cur_sum = 0  # 当前最大连续子序列和
-        res = nums[0]  # 结果
-        for i in range(len(nums)):
-            # 如果 cur_sum > 0，则说明 cur_sum 对结果有增益效果，则 cur_sum 保留并加上当前遍历数字
-            if cur_sum > 0:
-                cur_sum += nums[i]
-            # 如果 cur_sum <= 0，则说明 cur_sum 对结果无增益效果，需要舍弃，则 cur_sum 直接更新为当前遍历数字
-            else:
-                cur_sum = nums[i]
-            res = max(cur_sum, res)
-        return res
+            return nums[0]
+        dp = [0 for _ in range(len(nums))]
+        dp[0] = nums[0]
+        for i in range(1, len(nums)):
+            dp[i] = max(dp[i - 1] + nums[i], nums[i])
+        return max(dp)
+
+        '''空间复杂度O(1)'''
+        # ans = nums[0]
+        # res = 0  # 当前
+        # for i in range(len(nums)):
+        #     res = max(nums[i], res + nums[i])
+        #     ans = max(res, ans)
+        # return ans
 
 
 if __name__ == "__main__":
