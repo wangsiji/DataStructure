@@ -25,6 +25,14 @@
 2. 向下 -> 向下 -> 向右 -> 向右
 """
 
+"""
+状态方程：
+    dp[i][j] = dp[i][j - 1] + dp[i - 1][j] if obstacleGrid[i][j] != 1 else 0
+base case:
+    dp[0][j] =  int(dp[0][j - 1] == 1 and obstacleGrid[0][j] == 0)
+    dp[i][0] =  int(dp[i - 1][0] == 1 and obstacleGrid[i][0] == 0)
+"""
+
 
 class Solution(object):
     def uniquePathsWithObstacles(self, obstacleGrid):
@@ -36,26 +44,41 @@ class Solution(object):
         时间复杂度 ： O(M×N)。长方形网格的大小是 M×N，而访问每个格点恰好一次。
         空间复杂度 ： O(1)。我们利用 obstacleGrid 作为 DP 双指针，因此不需要额外的空间。
         """
-        # 如果第一个格点是 1，说明有障碍物，那么机器人不能做任何移动，返回结果 0
+        # # 如果第一个格点是 1，说明有障碍物，那么机器人不能做任何移动，返回结果 0
+        # if obstacleGrid[0][0] == 1:
+        #     return 0
+        # obstacleGrid[0][0] = 1
+        # # 第一行
+        # for i in range(1, len(obstacleGrid[0])):
+        #     obstacleGrid[0][i] = int(obstacleGrid[0][i] == 0 and obstacleGrid[0][i - 1] == 1)
+        # # 第一列
+        # for i in range(1, len(obstacleGrid)):
+        #     obstacleGrid[i][0] = int(obstacleGrid[i][0] == 0 and obstacleGrid[i - 1][0] == 1)
+        # for i in range(1, len(obstacleGrid)):
+        #     for j in range(1, len(obstacleGrid[0])):
+        #         # 如果这个点有障碍物，设值为 0 ，这可以保证不会对后面的路径产生贡献
+        #         if obstacleGrid[i][j] == 0:
+        #             obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
+        #         else:
+        #             obstacleGrid[i][j] = 0
+        # return obstacleGrid[-1][-1]
+
+        '''DP'''
         if obstacleGrid[0][0] == 1:
             return 0
-        obstacleGrid[0][0] = 1
-        # 第一行
-        for i in range(1, len(obstacleGrid[0])):
-            obstacleGrid[0][i] = int(obstacleGrid[0][i] == 0 and obstacleGrid[0][i - 1] == 1)
-        # 第一列
+        dp = [[0 for _ in range(len(obstacleGrid[0]))] for j in range(len(obstacleGrid))]
+        dp[0][0] = 1
         for i in range(1, len(obstacleGrid)):
-            obstacleGrid[i][0] = int(obstacleGrid[i][0] == 0 and obstacleGrid[i - 1][0] == 1)
+            dp[i][0] = int(dp[i - 1][0] == 1 and obstacleGrid[i][0] == 0)
+        for j in range(1, len(obstacleGrid[0])):
+            dp[0][j] = int(dp[0][j - 1] == 1 and obstacleGrid[0][j] == 0)
         for i in range(1, len(obstacleGrid)):
             for j in range(1, len(obstacleGrid[0])):
-                # 如果这个点有障碍物，设值为 0 ，这可以保证不会对后面的路径产生贡献
-                if obstacleGrid[i][j] == 0:
-                    obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
-                else:
-                    obstacleGrid[i][j] = 0
-        return obstacleGrid[-1][-1]
+                dp[i][j] = dp[i][j - 1] + dp[i - 1][j] if obstacleGrid[i][j] != 1 else 0
+
+        return dp[-1][-1]
 
 
 if __name__ == "__main__":
-    obstacleGrid = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+    obstacleGrid = [[0, 0]]
     print(Solution().uniquePathsWithObstacles(obstacleGrid))

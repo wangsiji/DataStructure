@@ -27,9 +27,11 @@
 """
 
 """
-斐波那契数列问题
-
-递归算法，复杂度太高
+状态方程： 
+    dp[i] = dp[i-1] + dp[i-2]
+    0 <= i <= n-1
+base case: 
+    dp[-1]=dp[-2] = 0
 """
 
 
@@ -49,14 +51,20 @@ class Solution(object):
         #     dp[i] = dp[i - 1] + dp[i - 2]
         # return dp[n]
         """斐波那契数"""
-        if n == 1:
-            return 1
-        first = 1
-        second = 2
-        for i in range(3, n+1):
-            first, second = second, first + second
-            print(first, second)
-        return second
+        # if n == 1:
+        #     return 1
+        # first = 1
+        # second = 2
+        # for i in range(3, n+1):
+        #     first, second = second, first + second
+        #     print(first, second)
+        # return second
+
+        '''O(n)'''
+        dp = [0 for _ in range(n + 2)]
+        for i in range(n):
+            dp[i + 1] = dp[i] + dp[i - 1]
+        print(dp)
 
 
 if __name__ == "__main__":

@@ -24,6 +24,14 @@
 
 """dp[i][j] 是到达 i, j 最多路径"""
 
+"""
+状态方程：
+    dp[i][j] = dp[i][j] = dp[i - 1][j] + dp[i][j - 1] 
+base case:
+    dp[0][j] =  1
+    dp[i][0] =  1
+"""
+
 
 class Solution(object):
     def uniquePaths(self, m, n):
@@ -58,14 +66,25 @@ class Solution(object):
         优化二：cur[j] += cur[j-1], 即cur[j] = cur[j] + cur[j-1] 
         等价于思路二-->> cur[j] = pre[j] + cur[j-1]，因此空间复杂度为O(n).
         """
-        cur = [1] * n
+        # cur = [1] * n
+        # for i in range(1, m):
+        #     for j in range(1, n):
+        #         cur[j] += cur[j - 1]
+        # return cur[-1]
+        '''DP'''
+        dp = [[0 for _ in range(n)] for _ in range(m)]
+        dp[0][0] = 1
+        for i in range(1, m):
+            dp[i][0] = 1
+        for j in range(1, n):
+            dp[0][j] = 1
         for i in range(1, m):
             for j in range(1, n):
-                cur[j] += cur[j - 1]
-        return cur[-1]
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+        return dp[m - 1][n - 1]
 
 
 if __name__ == "__main__":
-    m = 7
-    n = 3
+    m = 3
+    n = 2
     print(Solution().uniquePaths(m, n))
