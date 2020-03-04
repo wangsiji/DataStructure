@@ -30,11 +30,11 @@ import numpy as np
 """
 k = 2
 状态方程：
-    dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prince[i])
-    dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prince[i])
+    dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+    dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
 base case:
-    dp[-1][0] = 0 
-    dp[-1][1] = -infinity
+        dp[:, 0, 1] = float("-inf")
+        dp[0, :, 1] = float("-inf")
 """
 
 
@@ -44,12 +44,17 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-        dp = np.zeros((len(prices)+1, 2, 2))
-        print(dp)
+        dp = np.zeros((len(prices) + 1, 3, 2))
+        dp[:, 0, 1] = float("-inf")
+        dp[0, :, 1] = float("-inf")
+
         for i in range(len(prices)):
-            pass
+            for j in range(1, 3):
+                dp[i + 1, j, 0] = max(dp[i, j, 0], dp[i, j, 1] + prices[i])
+                dp[i + 1, j, 1] = max(dp[i, j, 1], dp[i, j - 1, 0] - prices[i])
+        return int(dp[len(prices), 2, 0])
 
 
 if __name__ == "__main__":
-    prices = [3, 3, 5, 0, 0, 3, 1, 4]
+    prices = [3,3,5,0,0,3,1,4]
     print(Solution().maxProfit(prices))

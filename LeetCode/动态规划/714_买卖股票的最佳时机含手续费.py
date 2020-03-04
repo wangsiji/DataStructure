@@ -18,6 +18,14 @@
 
 注意: 0 < prices.length <= 50000. 0 < prices[i] < 50000. 0 <= fee < 50000.
 """
+"""
+状态方程：
+    dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i]-fee)
+    dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i])
+base case:
+    dp[-1][0] = 0
+    dp[-1][1] = -infinity
+"""
 
 
 class Solution(object):
@@ -27,7 +35,19 @@ class Solution(object):
         :type fee: int
         :rtype: int
         """
-        pass
+        '''空间复杂度O(n)'''
+        dp = [[0 for _ in range(2)] for _ in range(len(prices) + 1)]
+        dp[0][0], dp[0][1] = 0, float("-inf")
+        for i in range(len(prices)):
+            dp[i + 1][0] = max(dp[i][0], dp[i][1] + prices[i] - fee)
+            dp[i + 1][1] = max(dp[i][1], dp[i][0] - prices[i])
+        return dp[len(prices)][0]
+        # '''空间复杂度O(1)'''
+        # cash, hold = 0, -prices[0]
+        # for i in range(1, len(prices)):
+        #     cash = max(cash, hold + prices[i] - fee)
+        #     hold = max(hold, cash - prices[i])
+        # return cash
 
 
 if __name__ == "__main__":

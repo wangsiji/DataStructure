@@ -27,10 +27,25 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-        pass
+        import numpy as np
+        if k > len(prices) / 2:
+            dp = np.zeros((len(prices) + 1, 2))
+            dp[0, 1] = float("-inf")
+            for i in range(len(prices)):
+                dp[i + 1, 0] = max(dp[i, 0], dp[i, 1] + prices[i])
+                dp[i + 1, 1] = max(dp[i, 1], dp[i, 0] - prices[i])
+            return int(dp[len(prices), 0])
+        else:
+            dp = np.zeros((len(prices) + 1, k + 1, 2))
+            dp[0, :, 1], dp[:, 0, 1] = float("-inf"), float("-inf")
+            for i in range(len(prices)):
+                for j in range(1, k + 1):
+                    dp[i + 1, j, 0] = max(dp[i, j, 0], dp[i, j, 1] + prices[i])
+                    dp[i + 1, j, 1] = max(dp[i, j, 1], dp[i, j - 1, 0] - prices[i])
+            return int(dp[len(prices), k, 0])
 
 
 if __name__ == "__main__":
     prices = [3, 2, 6, 5, 0, 3]
-    k = 2
+    k = 10
     print(Solution().maxProfit(k, prices))
