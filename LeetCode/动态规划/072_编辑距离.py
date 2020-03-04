@@ -26,6 +26,20 @@ exention -> exection (将 'n' 替换为 'c')
 exection -> execution (插入 'u')
 """
 
+"""
+dp[i][j]代表 word1 到 i 位置转换成 word2 到 j 位置需要最少步数
+状态方程:
+    dp[i][j] = dp[i-1][j-1]     # 相同          
+    dp[i][j] = dp[i-1][j-1] + 1 # 插入
+    dp[i][j] = dp[i-1][j] + 1   # 删除
+    dp[i][j] = dp[i][j-1] + 1   # 替换
+    0<=i<=len(word1) 0<=j<=len(word2)
+base case:
+    dp[-1][-1] = 0
+    dp[-1][j] = dp[-1][j-1] + 1
+    dp[i][-1] = dp[i-1][-1] + 1 
+"""
+
 
 class Solution(object):
     def minDistance(self, word1, word2):
@@ -37,15 +51,26 @@ class Solution(object):
         dp = [[0 for _ in range(len(word2) + 1)] for _ in range(len(word1) + 1)]
         for i in range(len(word1) + 1):
             for j in range(len(word2) + 1):
-                # 第一行、第一列
                 if not i or not j:
                     dp[i][j] = j if j != 0 else i
                 else:
                     if word1[i - 1] == word2[j - 1]:
                         dp[i][j] = dp[i - 1][j - 1]
                     else:
-                        dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1
+                        dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1  # 替换、删除、插入
         return dp[-1][-1]
+        # dp = [[0 for _ in range(len(word2) + 1)] for _ in range(len(word1) + 1)]
+        # for i in range(len(word1) + 1):
+        #     for j in range(len(word2) + 1):
+        #         # 第一行、第一列
+        #         if not i or not j:
+        #             dp[i][j] = j if j != 0 else i
+        #         else:
+        #             if word1[i - 1] == word2[j - 1]:
+        #                 dp[i][j] = dp[i - 1][j - 1]
+        #             else:
+        #                 dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1
+        # return dp[-1][-1]
 
 
 if __name__ == "__main__":
