@@ -50,7 +50,6 @@ class Solution(object):
             return dp[-1]
 
 
-
 if __name__ == "__main__":
     coins = [1, 2, 5]
     amount = 11

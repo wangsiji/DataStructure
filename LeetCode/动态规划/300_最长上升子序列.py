@@ -26,6 +26,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+
         if len(nums) == 0:
             return 0
         # 初始状态：dp[i]所有元素置1，含义是每个元素都至少可以单独成为子序列，此时长度都为1
@@ -38,5 +39,5 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    nums = [10, 9, 2, 5, 3, 7, 101, 18]
+    nums = [1, 3, 6, 7, 9, 4, 10, 5, 6]
     print(Solution().lengthOfLIS(nums))
