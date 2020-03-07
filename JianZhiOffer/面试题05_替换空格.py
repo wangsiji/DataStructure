@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019/12/6 9:43 下午
 # @Author  : siJi
-# @File    : 002_替换空格.py
+# @File    : 面试题05_替换空格.py
 # @Desc    : 字符串
 
 """
-请实现一个函数，将一个字符串中的每个空格替换成“%20”。
-例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
+请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+
+示例 1：输入：s = "We are happy." 输出："We%20are%20happy."
+
+限制：0 <= s 的长度 <= 10000
 """
 
 """
@@ -14,11 +17,12 @@
 """
 
 
-class Solution:
-    # s 源字符串
+class Solution(object):
     def replaceSpace(self, s):
-        # write code here
-        # 新数组
+        """
+        :type s: str
+        :rtype: str
+        """
         new_arr = []
         for i in s:
             if i == " ":

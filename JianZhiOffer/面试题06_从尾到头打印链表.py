@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019/12/6 9:54 下午
 # @Author  : siJi
-# @File    : 003_从尾到头打印链表.py
+# @File    : 面试题06_从尾到头打印链表.py
 # @Desc    : 链表
 
 """
