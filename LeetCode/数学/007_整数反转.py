@@ -39,13 +39,13 @@ class Solution(object):
             if flag == 1:
                 # 当出现 res > MAX_VALUE / 10 且 还有pop需要添加 时，则一定溢出
                 # 当出现 res == MAX_VALUE / 10 且 pop > 7 时，则一定溢出，7是2^31 - 1的个位数
-                if (res > (2 ** 31 - 1) / 10) or (res == (2 ** 31 - 1) / 10 and pop > 7):
+                if (res > (2 ** 31 - 1) // 10) or (res == (2 ** 31 - 1) // 10 and pop > 7):
                     return 0
             # 最小值溢出
             else:
                 # 当出现 res > MAX_VALUE / 10 且 还有pop需要添加 时，则一定溢出
                 # 当出现 res == MAX_VALUE / 10 且 pop > 7 时，则一定溢出，7是2^31 - 1的个位数
-                if (res > 2 ** 31 / 10) or (res == 2 ** 31 / 10 and pop > 8):
+                if (res > 2 ** 31 // 10) or (res == 2 ** 31 // 10 and pop > 8):
                     return 0
             res = res * 10 + pop
             p = p // 10
