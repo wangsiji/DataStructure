@@ -2,7 +2,7 @@
 # @Time    : 2020/3/6 2:49 下午
 # @Author  : siJi
 # @File    : 面试题03_数组中重复的数字.py
-# @Desc    :
+# @Desc    : 哈希表
 
 
 """
