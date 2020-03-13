@@ -24,6 +24,7 @@ Python-位操作( &、 | 、^、~ 、>>、 <<)
 """
 
 """
+https://leetcode-cn.com/problems/sum-of-two-integers/solution/wei-yun-suan-xiang-jie-yi-ji-zai-python-zhong-xu-y/
 1. a + b 的问题拆分为 (a 和 b 的无进位结果) + (a 和 b 的进位结果)
 2. 无进位加法使用异或运算计算得出
 3. 进位结果使用与运算和移位运算计算得出
@@ -43,6 +44,7 @@ Python-位操作( &、 | 、^、~ 、>>、 <<)
 """
 
 
+# TODO
 class Solution(object):
     def add(self, a, b):
         """
@@ -51,7 +53,10 @@ class Solution(object):
         :rtype: int
         """
         # 计算进位
-        return ((a & b) << 1) ^ (a ^ b)
+        while b != 0:
+            a = a ^ b
+            b = (a & b) << 1
+            print(a, b)
 
 
 if __name__ == "__main__":

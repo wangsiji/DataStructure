@@ -58,7 +58,9 @@ class SingleLinkList(object):
             count += 1
             # 将cur后移一个节点
             cur = cur.next
+        print(self.travel())
         return count
+
 
     def travel(self):
         """遍历链表"""
@@ -100,6 +102,7 @@ class SingleLinkList(object):
             self.append(item)
         # 找到指定位置
         else:
+            print(self.__head)
             node = SingleNode(item)
             count = 0
             # pre用来指向指定位置pos的前一个位置pos-1，初始从头节点开始移动到指定位置
@@ -145,16 +148,20 @@ class SingleLinkList(object):
 if __name__ == "__main__":
     ll = SingleLinkList()
     ll.add(1)
-    print(ll.is_empty())
-    print(ll.length())
-    ll.add(1)
     ll.add(2)
-    ll.append(3)
-    ll.insert(2, 4)
-    print("length:", ll.length())
-    ll.travel()
-    print(ll.search(3))
-    print(ll.search(5))
-    ll.remove(1)
-    print("length:", ll.length())
-    ll.travel()
+    # print(ll.is_empty())
+    # ll.add(1)
+    # print(ll.is_empty())
+    # ll.add(0)
+    # print(ll.length())
+    # ll.add(1)
+    # ll.add(2)
+    # ll.append(3)
+    # ll.insert(2, 4)
+    # print("length:", ll.length())
+    # ll.travel()
+    # print(ll.search(3))
+    # print(ll.search(5))
+    # ll.remove(1)
+    # print("length:", ll.length())
+    # ll.travel()
