@@ -20,11 +20,14 @@ class Tree(object):
     def __init__(self, root=None):
         self.root = root
 
+    def tree(self):
+        return self.root
+
     def add(self, elem):
         """为树添加节点"""
         node = Node(elem)
         # 如果树是空的，则对根节点赋值,返回
-        if self.root is None:
+        if not self.root:
             self.root = node
             return
         else:
@@ -33,10 +36,10 @@ class Tree(object):
             while queue:
                 # 弹出队列的第一个元素
                 cur = queue.pop(0)
-                if cur.lchild is None:
+                if not cur.lchild :
                     cur.lchild = node
                     return
-                elif cur.rchild is None:
+                elif not cur.rchild:
                     cur.rchild = node
                     return
                 else:
@@ -50,16 +53,15 @@ class Tree(object):
         从树的root开始，从上到下从从左到右遍历整个树的节点
         利用队列实现树的层次遍历
         """
-        if self.root == None:
+        if not self.root:
             return
-        queue = []
-        queue.append(self.root)
+        queue = [self.root]
         while queue:
             node = queue.pop(0)
             print(node.elem)
-            if node.lchild is not None:
+            if node.lchild:
                 queue.append(node.lchild)
-            if node.rchild is not None:
+            if node.rchild:
                 queue.append(node.rchild)
 
 
@@ -72,4 +74,5 @@ if __name__ == "__main__":
     tree.add(5)
     tree.add(6)
     tree.add(7)
+    print(tree.tree())
     print(tree.breadth_travel())

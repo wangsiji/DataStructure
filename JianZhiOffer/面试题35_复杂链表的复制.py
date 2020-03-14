@@ -18,12 +18,13 @@
     节点数目不超过 1000 。
 """
 
-
 """
 浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。
 但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。
 对于简单的 object，用 shallow copy 和 deep copy 没区别
 """
+
+
 # TODO
 # Definition for a Node.
 class Node:
@@ -34,7 +35,7 @@ class Node:
 
 
 class Solution(object):
-    def copyRandomList(self, hezad):
+    def copyRandomList(self, head):
         """
         :type head: Node
         :rtype: Node
@@ -44,6 +45,28 @@ class Solution(object):
         '''
         # import copy
         # return copy.deepcopy(head)
+        '''
+        方法二 O(1)
+        '''
+        if not head:
+            return None
+        prev = head
+        # 遍历原来的链表并拷贝每一个节点，将拷贝节点放在原来节点的旁边，创造出一个旧节点和新节点交错的链表。
+        # A->B A->A'->B->B'
+        while prev:
+            new_node = Node(prev.val)  # 新节点
+            new_node.next = prev.next  # A'->B
+            prev.next = new_node  # A->A'
+            prev = new_node.next  # B
+        # 修改每个新结点的 next 指针和 random 指针。
+        # A->B A->A'->B->B'
+        prev = head
+        while prev:
+            next_origin = prev.next.next  # 下一个旧节点 B
+            prev.next.next = next_origin.next if not next_origin else None  # 修改新结点的next A'->B'
+            prev.next.random = prev.random.next if not prev.random else None  # 修改新结点的 random
+            prev = next_origin  # B
+        return head.next
 
 
 if __name__ == "__main__":
