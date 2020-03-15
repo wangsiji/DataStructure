@@ -19,6 +19,7 @@
 1 <= n <= 10^5 1 <= m <= 10^6
 """
 
+
 # TODO
 class Solution(object):
     def lastRemaining(self, n, m):
@@ -27,8 +28,14 @@ class Solution(object):
         :type m: int
         :rtype: int
         """
-        pass
+        '''
+        方法一 迭代
+        '''
 
+
+        '''
+        方法二 递归
+        '''
 
 if __name__ == "__main__":
     n = 10
