@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/3/8 8:42 下午
 # @Author  : siJi
-# @File    : 008_字符串转换整数 (atoi).py
+# @File    : 008_字符串转换整数(atoi).py
 # @Desc    :
 
 """
