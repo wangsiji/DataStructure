@@ -2,7 +2,7 @@
 # @Time    : 2020/2/29 7:39 下午
 # @Author  : siJi
 # @File    : 287_寻找重复数.py
-# @Desc    :
+# @Desc    : 数组
 
 
 """
@@ -42,6 +42,13 @@ class Solution(object):
         # from collections import Counter
         # counter = Counter(nums)
         # return max(counter.keys(), key=counter.get)
+
+        '''数组'''
+        for i in range(len(nums)):
+            while (i + 1) != nums[i]:
+                if nums[i] == nums[nums[i] - 1]:
+                    return nums[i]
+                nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
 
 
 if __name__ == "__main__":

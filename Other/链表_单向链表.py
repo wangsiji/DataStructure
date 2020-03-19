@@ -44,6 +44,9 @@ class SingleLinkList(object):
     def __init__(self, node=None):
         self.__head = node  # 私有属性
 
+    def get_head(self):
+        return self.__head
+
     def is_empty(self):
         """判断链表是否为空"""
         return self.__head is None
@@ -60,7 +63,6 @@ class SingleLinkList(object):
             cur = cur.next
         print(self.travel())
         return count
-
 
     def travel(self):
         """遍历链表"""
@@ -145,23 +147,38 @@ class SingleLinkList(object):
         return False
 
 
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        node1, node2 = headA, headB
+        while node1 != node2:
+            print(node1, node2)
+            node1 = node1.next if node1 else headB
+            node2 = node2.next if node2 else headA
+        return node1
+
+def travel(head):
+    """遍历链表"""
+    cur = head
+    while cur is not None:
+        print(cur.item)
+        cur = cur.next
+    print("")
+
 if __name__ == "__main__":
     ll = SingleLinkList()
-    ll.add(1)
-    ll.add(2)
-    # print(ll.is_empty())
-    # ll.add(1)
-    # print(ll.is_empty())
-    # ll.add(0)
-    # print(ll.length())
-    # ll.add(1)
-    # ll.add(2)
-    # ll.append(3)
-    # ll.insert(2, 4)
-    # print("length:", ll.length())
-    # ll.travel()
-    # print(ll.search(3))
-    # print(ll.search(5))
-    # ll.remove(1)
-    # print("length:", ll.length())
-    # ll.travel()
+    listA = [5, 0, 1, 8, 4, 5]
+    listB = [5, 0, 1, 8, 4, 5]
+    lA, lB = SingleLinkList(), SingleLinkList()
+    for num in listA:
+        lA.append(num)
+    for num in listB:
+        lB.append(num)
+    a = lA.get_head()
+    b = lB.get_head()
+    print(a == b )
+    # a = Solution().getIntersectionNode(lA.get_head(), lB.get_head())
+    # print(travel(a))

@@ -11,7 +11,7 @@
  
 限制：0 <= 节点个数 <= 5000
 """
-
+# TODO
 
 # Definition for singly-linked list.
 class ListNode(object):
@@ -75,4 +75,5 @@ if __name__ == "__main__":
     ll.append(5)
     head = ll.get_head()
 
-    print(Solution().reverseList(head))
+    # print(Solution().reverseList(head))
+    print(Solution().travel(head))
