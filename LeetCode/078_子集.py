@@ -31,6 +31,8 @@
 
 
 """
+
+
 # TODO
 
 
@@ -41,13 +43,46 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         '''
-        方法一 递归
+        方法一 迭代
             开始假设输出子集为空，每一步都向子集添加新的整数，并生成新的子集。
         '''
-        output = [[]]
-        for num in nums:
-            output += [curr + [num] for curr in output]
-        return output
+        # output = [[]]
+        # for num in nums:
+        #     output += [curr + [num] for curr in output]
+        #     print(output)
+        # return output
+        '''
+        方法二 库函数
+        '''
+        # import itertools
+        # res = []
+        # for i in range(len(nums)+1):
+        #     for tmp in itertools.combinations(nums, i):
+        #         res.append(list(tmp))
+        # return res
+        '''
+        方法三 回溯算法
+        回溯法是一种探索所有潜在可能性找到解决方案的算法
+        其实回溯算法关键在于:不合适就退回上一步
+        
+        算法:
+        定义一个回溯方法 backtrack(first, curr)，第一个参数为索引 first，第二个参数为当前子集 curr。
+            如果当前子集构造完成，将它添加到输出集合中。
+            否则，从 first 到 n 遍历索引 i。
+                将整数 nums[i] 添加到当前子集 curr。
+                继续向子集中添加整数：backtrack(i + 1, curr)。
+                从 curr 中删除 nums[i] 进行回溯。
+        '''
+        res = []
+        n = len(nums)
+
+        def backtrack(first, curr):
+            res.append(curr)
+            for j in range(first, n):
+                backtrack(j + 1, curr + [nums[j]])
+
+        backtrack(0, [])
+        return res
 
 
 if __name__ == "__main__":

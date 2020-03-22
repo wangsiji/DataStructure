@@ -5,7 +5,6 @@
 # @Desc    : 动态规划
 import numpy as np
 
-
 def knapsack(w, v, C):
     mem = np.zeros((len(w) + 1, C + 1))
     for i in range(1, len(w) + 1):

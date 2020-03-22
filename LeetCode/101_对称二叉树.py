@@ -26,7 +26,7 @@
 如果你可以运用递归和迭代两种方法解决这个问题，会很加分。
 """
 
-# TODO
+
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -103,12 +103,18 @@ class Solution(object):
         '''
         if not root:
             return True
-        queue = [root]
+        queue = [root.left, root.right]
         while queue:
-            pass
-
-
-
+            tree1 = queue.pop(0)
+            tree2 = queue.pop(0)
+            if not tree1 and not tree2:
+                continue
+            if not tree1 or not tree2:
+                return False
+            if tree1.val != tree2.val:
+                return False
+            queue = queue + [tree1.left, tree2.right, tree1.right, tree2.left]
+        return True
 
 
 if __name__ == "__main__":
