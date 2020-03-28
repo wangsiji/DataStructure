@@ -1,20 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/3/16 10:30 下午
+# @Time    : 2019/11/27 12:04 上午
 # @Author  : siJi
-# @File    : 面试题51_数组中的逆序对.py
+# @File    : 排序_归并排序.py
 # @Desc    :
-
-# TODO
-"""
-在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。
-
-示例 1:
-输入: [7,5,6,4] 输出: 5
- 
-
-限制：0 <= 数组长度 <= 50000
-"""
-
 
 def merge(left, right):
     res = []
@@ -40,10 +28,7 @@ def merge_sort(nums):
     return merge(left, right)
 
 
-class Solution(object):
-    def reversePairs(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        pass
+if __name__ == "__main__":
+    nums = [1, 5, 8, 6, 3, 4]
+
+    print(merge_sort(nums))

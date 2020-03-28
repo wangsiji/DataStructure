@@ -24,17 +24,6 @@
 ]
 """
 
-"""
-递归
-回溯
-基于二进制位掩码和对应位掩码之间的映射字典生成排列/组合/子集
-
-
-"""
-
-
-# TODO
-
 
 class Solution(object):
     def subsets(self, nums):
@@ -74,14 +63,13 @@ class Solution(object):
                 从 curr 中删除 nums[i] 进行回溯。
         '''
         res = []
-        n = len(nums)
 
-        def backtrack(first, curr):
-            res.append(curr)
-            for j in range(first, n):
-                backtrack(j + 1, curr + [nums[j]])
+        def backtrack(nums, tmp):
+            res.append(tmp)
+            for i in range(len(nums)):
+                backtrack(nums[i + 1:], tmp + [nums[i]])
 
-        backtrack(0, [])
+        backtrack(nums, [])
         return res
 
 

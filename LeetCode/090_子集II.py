@@ -25,10 +25,25 @@
 ]
 """
 
+
 class Solution(object):
     def subsetsWithDup(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        pass
+        res = []
+
+        def backtrack(nums, tmp):
+            if tmp not in res:
+                res.append(tmp)
+            for i in range(len(nums)):
+                backtrack(nums[i + 1:], tmp + [nums[i]])
+
+        backtrack(nums, [])
+        return res
+
+
+if __name__ == "__main__":
+    nums = [1, 2, 2]
+    print(Solution().subsetsWithDup(nums))

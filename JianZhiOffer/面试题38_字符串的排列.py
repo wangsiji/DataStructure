@@ -16,20 +16,6 @@
 # TODO
 
 class Solution(object):
-    def stringSort(self, s, tmp, res):
-        if len(s) == 1:
-            tmp.append(s[0])
-            res.append("".join(tmp))
-            tmp.pop()
-            return
-        for i in range(len(s)):
-            if i and s[i] == s[0]:
-                continue
-            s[0], s[i] = s[i], s[0]
-            tmp.append(s[0])
-            self.stringSort(s[1:], tmp, res)
-            tmp.pop()
-            s[i], s[0] = s[0], s[i]
 
     def permutation(self, s):
         """
@@ -44,13 +30,7 @@ class Solution(object):
                 然后把第一个字符逐一和它后面的字符交换.
             第三步,算法最后的结果可能会有重复的情况出现,我们使用python自带的set()函数来去重
         '''
-        res = []
-        if not s:
-            return []
-        s = list(s)
-        tmp = []
-        self.stringSort(s, tmp, res)
-        return list(set(res))
+        pass
 
 
 if __name__ == "__main__":

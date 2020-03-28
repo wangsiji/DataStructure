@@ -31,13 +31,24 @@ class Solution(object):
         '''
         方法一 迭代
         '''
+        nums = list(range(n))
 
+        def helper(nums, m, start):
+            if len(nums) == 1:
+                return nums[0]
+            index = (m - 1 + start) % len(nums)
+            start += m - 1
+            nums.pop(index)
+            return helper(nums, m, start)
 
-        '''
-        方法二 递归
-        '''
+        return helper(nums, m, 0)
+        #
+        # '''
+        # 方法二 递归
+        # '''
+
 
 if __name__ == "__main__":
-    n = 10
-    m = 17
+    n = 5
+    m = 3
     print(Solution().lastRemaining(n, m))

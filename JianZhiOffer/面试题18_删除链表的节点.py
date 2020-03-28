@@ -19,8 +19,6 @@
 """
 
 
-# TODO
-# Definition for singly-linked list.
 class ListNode(object):
     def __init__(self, x):
         self.val = x
@@ -67,6 +65,7 @@ class Solution(object):
         while cur is not None:
             print(cur.val)
             cur = cur.next
+
 
 if __name__ == "__main__":
     ll = SingleLinkList()

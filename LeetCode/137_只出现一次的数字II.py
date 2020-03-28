@@ -15,7 +15,7 @@
 示例 2:
 输入: [0,1,0,1,0,1,99] 输出: 99
 """
-# TODO
+
 
 class Solution(object):
     def singleNumber(self, nums):
@@ -40,9 +40,10 @@ class Solution(object):
             |	按位或 ，二进制位数或有1结果位为1
             ^	按位异或 ，二进制位数不同结果位为1
             ~	按位取反，二进制位0和1结果位互换
+            
+
+        
         '''
-        seen_once = seen_twice = 0  # 区分出现一次的数字和出现三次的数字，使用两个位掩
-        # 位掩码seen_once 仅保留出现一次的数字，不保留出现三次的数字。
 
 
 

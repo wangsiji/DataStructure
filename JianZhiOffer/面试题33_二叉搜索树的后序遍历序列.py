@@ -4,7 +4,6 @@
 # @File    : 面试题33_二叉搜索树的后序遍历序列.py
 # @Desc    :
 
-# TODO
 
 """
 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。
@@ -26,10 +25,34 @@
 提示：数组长度 <= 1000
 """
 
+
 class Solution(object):
     def verifyPostorder(self, postorder):
         """
         :type postorder: List[int]
         :rtype: bool
         """
-        pass
+        '''
+        后序遍历性质： [ 左子树 | 右子树 | 根节点 ] ，即遍历顺序为 “左、右、根” 。
+        二叉搜索树性质： 左子树任意节点的值 < 根节点的值；右子树任意节点的值 > 根节点的值。
+        '''
+
+        def helper(i, j):
+            if i >= j:
+                return True
+            # 左子树
+            l = i
+            while postorder[l] < postorder[j]:
+                l += 1
+            # 右子树
+            m = l
+            while postorder[m] > postorder[j]:
+                m += 1
+            return m == j and helper(i, l - 1) and helper(l, m - 1)
+
+        return helper(0, len(postorder) - 1)
+
+
+if __name__ == "__main__":
+    postorder = [1, 3, 2, 6, 5]
+    print(Solution().verifyPostorder(postorder))

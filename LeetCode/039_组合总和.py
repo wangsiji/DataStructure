@@ -2,12 +2,11 @@
 # @Time    : 2020/3/20 10:42 下午
 # @Author  : siJi
 # @File    : 039_组合总和.py
-# @Desc    :
+# @Desc    : 回溯算法 + 剪枝
 
 # TODO
 """
 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
-
 candidates 中的数字可以无限制重复被选取。
 
 说明：
@@ -40,4 +39,7 @@ class Solution(object):
         :type target: int
         :rtype: List[List[int]]
         """
-        pass
+        '''
+        候选数组里有 2 ，如果找到了 7 - 2 = 5 的所有组合，再在之前加上 2 ，就是 7 的所有组合；
+        同理考虑 3，如果找到了 7 - 3 = 4 的所有组合，再在之前加上 3 ，就是 7 的所有组合，依次这样找下去；
+        '''

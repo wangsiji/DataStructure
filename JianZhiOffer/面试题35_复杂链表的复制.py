@@ -25,7 +25,7 @@
 """
 
 
-# TODO
+# https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/solution/lian-biao-de-shen-kao-bei-by-z1m/
 # Definition for a Node.
 class Node:
     def __init__(self, x, next=None, random=None):

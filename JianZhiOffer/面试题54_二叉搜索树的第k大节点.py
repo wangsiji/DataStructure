@@ -37,8 +37,6 @@
 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 
 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 
 """
-# TODO
-
 
 class TreeNode(object):
     def __init__(self, x):
@@ -95,18 +93,18 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        res = []
-
-        def inorder(self, root):
+        '''
+        中序遍历
+        '''
+        def dfs(root):
             if not root:
                 return
-            self.inorder(root.left)
-            res.append(root.val)
-            self.inorder(root.right)
-        inorder(root)
-        return res
-        pass
-
+            dfs(root.left)
+            tmp.append(root.val)
+            dfs(root.right)
+        tmp = []
+        dfs(root)
+        return tmp[-k]
 
 if __name__ == "__main__":
     tree = Tree()
@@ -115,8 +113,5 @@ if __name__ == "__main__":
     tree.add(6)
     tree.add(2)
     tree.add(4)
-    tree.add(None)
-    tree.add(None)
-    tree.add(1)
     tree = tree.tree()
     print(Solution().kthLargest(tree, 1))

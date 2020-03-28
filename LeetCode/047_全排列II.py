@@ -3,7 +3,7 @@
 # @Author  : siJi
 # @File    : 047_全排列II.py
 # @Desc    :
-#TODO
+
 """
 给定一个可包含重复数字的序列，返回所有不重复的全排列。
 
@@ -24,7 +24,17 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        pass
+        res = []
+
+        def backtrack(nums, tmp):
+            if not nums and tmp not in res:
+                res.append(tmp)
+                return
+            for i in range(len(nums)):
+                backtrack(nums[:i] + nums[i + 1:], tmp + [nums[i]])
+
+        backtrack(nums, [])
+        return res
 
 
 if __name__ == "__main__":

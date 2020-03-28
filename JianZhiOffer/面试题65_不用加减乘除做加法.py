@@ -44,7 +44,6 @@ https://leetcode-cn.com/problems/sum-of-two-integers/solution/wei-yun-suan-xiang
 """
 
 
-# TODO
 class Solution(object):
     def add(self, a, b):
         """
@@ -52,14 +51,36 @@ class Solution(object):
         :type b: int
         :rtype: int
         """
-        # 计算进位
-        while b != 0:
-            a = a ^ b
-            b = (a & b) << 1
-            print(a, b)
+        '''
+        13 + 9 
+        1101 + 1001
+        # ^ 不进位的和 13 ^ 9 = 0100 = 4
+        # & 计算进位 13 & 9 = 1001 进位右边要补0 => 10010 = 18 
+        '''
+        # # 计算进位
+        # while b:
+        #     # 求和（不计进位）. 相同位置0，相反位置1
+        #     plus = a ^ b
+        #     # 计算进位. 先保留同为1的位，都为1的位要向左进位，因此左移1位
+        #     b = ((a & b) << 1)
+        #     a = plus
+        # return a
 
+
+
+        # (n & 0xffffffff)进行这种变换的原因是,如果存在负数则需要转换成补码的形式,正数补码是他本身
+        a &= 0xffffffff#
+        b &= 0xffffffff
+        while b != 0:
+            carry = ((a & b) << 1) & 0xffffffff#如果是负数,转换成补码形式
+            a ^= b
+            b = carry
+        if a < 0x80000000:#如果是正数的话直接返回
+            return a
+        else:
+            return  ~(a^0xffffffff)#是负数的话,转化成其原码
 
 if __name__ == "__main__":
-    a = 4
-    b = 5
+    a = 13
+    b = 9
     print(Solution().add(a, b))

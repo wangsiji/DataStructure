@@ -3,7 +3,7 @@
 # @Author  : siJi
 # @File    : 046_全排列.py
 # @Desc    :
-#TODO
+
 """
 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
 
@@ -20,14 +20,33 @@
 ]
 """
 
+
 class Solution(object):
     def permute(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        pass
+        '''
+        方法一 库函数
+        '''
+        # import itertools
+        # return list(itertools.permutations(nums))
+
+        '''
+        方法二 回溯算法
+        '''
+        res = []
+        def backtrack(nums, tmp):
+            if not nums:
+                res.append(tmp)
+                return
+            for i in range(len(nums)):
+                backtrack(nums[:i] + nums[i + 1:], tmp + [nums[i]])
+        backtrack(nums, [])
+        return res
+
 
 if __name__ == "__main__":
-    nums = [1,2,3]
+    nums = [1, 2, 3]
     print(Solution().permute(nums))

@@ -18,7 +18,7 @@
 """
 
 
-# TODO
+
 class Solution(object):
     def countDigitOne(self, n):
         """
@@ -54,26 +54,14 @@ class Solution(object):
             个位 101//10 * 1  + min(101%10, 1) = 11
             十位 101//100 * 10 + min(101%100, 10) = 11
             百位 1234//1000 * 100 + min(1234%1000, 100) = 200
+            
+        n // (i*10) * i + min(max(n % (i * 10) - i + 1, 0), i)
         '''
-        res = 0
-        if not n:
-            return res
-        for i in range(len(str(n))):
-            if i != len(str(n)) - 1:
-                position = 10 ** i  # 个位、十位、百位
-                count = n // (position * 10) * position + min(n % (position * 10), position)
-
-                print(count)
-                # print(n // (10 ** (i + 1)) * (10 ** i) + min(n % (10 ** (i + 1)), 10 ** i))
-                #
-                # res += n // (10 ** (i + 1)) * (10 ** i) + min(n % (10 ** (i + 1)), 10 ** i)
-            else:
-                if str(n)[0] == "1":
-                    count = n % (10 ** i) + 1
-                else:
-                    count = 10 ** i
-                print(count)
-        return res
+        cnt, i = 0, 1
+        while i <= n: # i 依次个十百位的算，直到大于 n 为止。
+            cnt += n // (i * 10) * i + min(max(n % (i * 10) - i + 1, 0), i)
+            i *= 10
+        return cnt
 
 
 if __name__ == "__main__":

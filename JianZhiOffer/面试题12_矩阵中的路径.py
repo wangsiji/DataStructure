@@ -2,7 +2,7 @@
 # @Time    : 2020/3/7 4:18 下午
 # @Author  : siJi
 # @File    : 面试题12_矩阵中的路径.py
-# @Desc    : DFS 回溯
+# @Desc    : DFS
 
 """
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。
@@ -25,11 +25,7 @@
 """
 
 
-# TODO
-
 class Solution(object):
-    def __init__(self):
-        self.directions = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 
     def exist(self, board, word):
         """
@@ -37,31 +33,34 @@ class Solution(object):
         :type word: str
         :rtype: bool
         """
-        m = len(board)
-        if m == 0:
-            return False
-        n = len(board[0])
-        marked = [[False for _ in range(n)] for _ in range(m)]
-        for i in range(m):
-            for j in range(n):
-                if self._dfs(board, word, 0, i, j, marked, m, n):
-                    return True
-        return False
+        '''
+        https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/
+        本问题是典型的矩阵搜索问题，可使用 深度优先搜索（DFS）+ 剪枝 解决。
+        算法原理：
+            深度优先搜索： 可以理解为暴力法遍历矩阵中所有字符串可能性。
+                         DFS 通过递归，先朝一个方向搜到底，再回溯至上个节点，沿另一个方向搜索，以此类推。
+            剪枝： 在搜索中，遇到 这条路不可能和目标字符串匹配成功 的情况
+                （例如：此矩阵元素和目标字符不同、此元素已被访问），则应立即返回，称之为 可行性剪枝 。
+        
+        从每个节点 DFS 的顺序为：下、上、右、左。
+        '''
 
-    def _dfs(self, board, word, index, start_x, start_y, marked, m, n):
+        def dfs(i, j, k):
+            if not 0 <= i < len(board) or not 0 <= j < len(board[0]) or board[i][j] != word[k]:
+                return False
+            if k == len(word) - 1:
+                return True
+            tmp, board[i][j] = board[i][j], "/"
+            # 从每个节点 DFS 的顺序为：下、上、右、左。
+            res = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)
+            board[i][j] = tmp
+            return res
 
-        if index == len(word) - 1:
-            return board[start_x][start_y] == word[index]
-        if board[start_x][start_y] == word[index]:
-            marked[start_x][start_y] = True
-            for direction in self.directions:
-                new_x = start_x + direction[0]
-                new_y = start_y + direction[1]
-                if 0 <= new_x < m and 0 <= new_y < n and not marked[new_x][new_y] and self._dfs(board, word, index + 1,
-                                                                                                new_x, new_y, marked, m,
-                                                                                                n):
+
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if dfs(i, j, 0):
                     return True
-            marked[start_x][start_y] = False
         return False
 
 

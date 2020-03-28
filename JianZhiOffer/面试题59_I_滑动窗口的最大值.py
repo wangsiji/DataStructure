@@ -28,8 +28,6 @@
 """
 
 
-# TODO
-
 class Solution(object):
     def maxSlidingWindow(self, nums, k):
         """

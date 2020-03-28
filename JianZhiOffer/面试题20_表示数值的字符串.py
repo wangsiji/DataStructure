@@ -10,7 +10,6 @@
 """
 
 
-# TODO
 class Solution(object):
     def isNumber(self, s):
         """
@@ -18,8 +17,7 @@ class Solution(object):
         :rtype: bool
         """
         import re
-        p = re.compile(r'^[\+\-]?\d+[\.eE]?-?\d+$')
-        return bool(p.match(s.strip()))
+        return bool(re.match(r'\s*[+-]?([\d]+(\.[\d]*)?|\.[\d]+)(e[+-]?[\d]+)? *$', s))
 
 
 if __name__ == "__main__":

@@ -22,32 +22,41 @@
     1 <= push_back,pop_front,max_value的总操作数 <= 10000
     1 <= value <= 10^5
 """
+import queue
 
 
-class MaxQueue(object):
+class MaxQueue:
+    """1队列+1双端队列"""
 
     def __init__(self):
-        pass
+        self.queue = queue.Queue()
+        self.deque = queue.deque()
 
-    def max_value(self):
-        """
-        :rtype: int
-        """
-        pass
+    def max_value(self) -> int:
+        if self.deque:
+            return self.deque[0]
+        else:
+            return -1
+        # return self.deque[0] if self.deque else -1 或者这样写
 
-    def push_back(self, value):
-        """
-        :type value: int
-        :rtype: None
-        """
+    def push_back(self, value: int) -> None:
+        while self.deque and self.deque[-1] < value:
+            self.deque.pop()
+        self.deque.append(value)
+        self.queue.put(value)
 
-    def pop_front(self):
-        """
-        :rtype: int
-        """
+    def pop_front(self) -> int:
+        if not self.deque: return -1
+        ans = self.queue.get()
+        if ans == self.deque[0]:
+            self.deque.popleft()
+        return ans
 
-# Your MaxQueue object will be instantiated and called as such:
-# obj = MaxQueue()
-# param_1 = obj.max_value()
-# obj.push_back(value)
-# param_3 = obj.pop_front()
+
+if __name__ == "__main__":
+    queue = MaxQueue()
+    queue.push_back(1)
+    queue.push_back(2)
+    print(queue.max_value())
+    print(queue.pop_front())
+    print(queue.max_value())

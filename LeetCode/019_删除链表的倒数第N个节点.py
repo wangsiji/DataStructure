@@ -59,18 +59,18 @@ class Solution(object):
         :type n: int
         :rtype: ListNode
         """
-        slow, fast = head, head
-        for _ in range(n):
+        # 设置哑结点
+        dummy = ListNode(0)
+        dummy.next = head
+        slow, fast = dummy, dummy
+        for _ in range(n+1):
             fast = fast.next
         while fast:
             fast = fast.next
             slow = slow.next
-        print(travel(slow))
-        slow.val =  slow.next.val
+
         slow.next = slow.next.next
-        print(travel(slow))
-        print(travel(head))
-        return head
+        return dummy.next
 
 if __name__ == "__main__":
     nums = [1,2,3,4,5]
@@ -78,4 +78,3 @@ if __name__ == "__main__":
     for num in nums:
         head.append(num)
     print(Solution().removeNthFromEnd(head.head, 2))
-    print(travel(Solution().removeNthFromEnd(head.head, 2)))

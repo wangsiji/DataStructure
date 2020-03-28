@@ -120,13 +120,11 @@ def postorder(root):
 
 if __name__ == "__main__":
     tree = Tree()
-    tree.add(1)
-    tree.add(2)
-    tree.add(3)
-    tree.add(4)
     tree.add(5)
+    tree.add(3)
     tree.add(6)
-    tree.add(7)
+    tree.add(2)
+    tree.add(4)
     tree = tree.tree()
 
     print(inorder(tree))

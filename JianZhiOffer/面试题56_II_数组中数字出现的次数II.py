@@ -25,9 +25,27 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        pass
+        '''
+        我们想一下如果一个数字出现三次,那么他的二进制位表示的每一位(0或1)也出现了三次.
+        如果把所有出现三次的数字的二进制表示的每一位都分别加起来,那么每一位的和都能被3整除
 
+        我们把所有数字的二进制位的每一位加起来.若果某一位的和能被3整除,那么那个只出现一次的数字二进制表示中对应的那一位为0,否则为1
+        '''
+        bitSum = [0] * 32
+
+        # 统计各位之和
+        for i in nums:
+            mask = 1
+            for j in reversed(range(32)):
+                if mask & i :
+                    bitSum[j] += 1
+                mask <<= 1
+        res = 0
+        for i in range(32):
+            res <<= 1
+            res += bitSum[i] % 3
+        return res
 
 if __name__ == "__main__":
-    nums = [9, 1, 7, 9, 7, 9, 7]
+    nums = [9, 3, 7, 9, 7, 9, 7]
     print(Solution().singleNumber(nums))

@@ -21,15 +21,26 @@
 解释：输入的二进制串 11111111111111111111111111111101 中，共有 31 位为 '1'。
 """
 
-# TODO
 class Solution(object):
     def hammingWeight(self, n):
         """
         :type n: int
         :rtype: int
         """
-        return bin(n).count('1')
+        '''
+        方法一 函数
+        '''
+        # return bin(n).count('1')
 
+        '''
+        方法二 位运算
+        '''
+        res = 0
+        while n:
+            if n & 1 == 1:
+                res += 1
+            n = n >> 1
+        return res
 
 if __name__ == "__main__":
-    print(Solution().hammingWeight(9))
+    print(Solution().hammingWeight(3))
