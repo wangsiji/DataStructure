@@ -39,6 +39,7 @@ class Solution(object):
         while n:
             if n & 1 == 1:
                 res += 1
+            # 位移
             n = n >> 1
         return res
 

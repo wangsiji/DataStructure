@@ -46,6 +46,10 @@ class Solution(object):
         '''
 
         def dfs(i, j, k):
+            """
+            递归参数： 当前元素在矩阵 board 中的行列索引 i 和 j ，当前目标字符在 word 中的索引 k 。
+            """
+            # 终止条件：返回false ： ① 行或列索引越界 或 ② 当前矩阵元素与目标字符不同 或 ③ 当前矩阵元素已访问过 （③ 可合并至 ② ） 。
             if not 0 <= i < len(board) or not 0 <= j < len(board[0]) or board[i][j] != word[k]:
                 return False
             if k == len(word) - 1:

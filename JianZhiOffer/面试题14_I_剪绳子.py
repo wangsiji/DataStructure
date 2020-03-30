@@ -29,6 +29,9 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
+        '''
+        状态数组dp[i]表示：数字 i 拆分为至少两个正整数之和的最大乘积。为了方便计算，dp 的长度是 n + 1，值初始化为 1。
+        '''
         dp = [1 for _ in range(n + 1)]
         for i in range(3, n + 1):
             for j in range(1, i):
