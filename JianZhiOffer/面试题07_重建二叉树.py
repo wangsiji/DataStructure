@@ -48,15 +48,6 @@ class Tree(object):
 
 
 class Solution(object):
-
-    def recur(self, pre_root, in_left, in_right):
-        if in_left > in_right: return  # 终止条件：中序遍历为空
-        root = TreeNode(self.po[pre_root])  # 建立当前子树的根节点
-        i = self.dic[self.po[pre_root]]  # 搜索根节点在中序遍历中的索引，从而可对根节点、左子树、右子树完成划分。
-        root.left = self.recur(pre_root + 1, in_left, i - 1)  # 开启左子树的下层递归
-        root.right = self.recur(i - in_left + pre_root + 1, i + 1, in_right)  # 开启右子树的下层递归
-        return root  # 返回根节点，作为上层递归的左（右）子节点
-
     def buildTree(self, preorder, inorder):
         """
         :type preorder: List[int]
@@ -66,6 +57,9 @@ class Solution(object):
         '''
         递归：
             递推参数： 前序遍历中根节点的索引pre_root、中序遍历左边界in_left、中序遍历右边界in_right。
+            
+        时间复杂度：O(n)。对于每个节点都有创建过程以及根据左右子树重建过程。
+        空间复杂度：O(n)。存储整棵树的开销。
         '''
 
         def helper(in_left=0, in_right=len(inorder)):
@@ -95,4 +89,4 @@ class Solution(object):
 if __name__ == "__main__":
     preorder = [3, 9, 20, 15, 7]
     inorder = [9, 3, 15, 20, 7]
-    print(Solution().buildTree(preorder, inorder))
+    print(Solution().buildTree(preorder, inorder).right.val)

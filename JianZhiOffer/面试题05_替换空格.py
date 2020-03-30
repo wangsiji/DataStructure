@@ -23,6 +23,10 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
+        '''
+        时间复杂度：O(n)。遍历字符串 s 一遍。
+        空间复杂度：O(n)。额外创建字符数组
+        '''
         new_arr = []
         for i in s:
             if i == " ":
