@@ -20,7 +20,6 @@
 """
 
 
-# TODO
 class Solution(object):
     def lastRemaining(self, n, m):
         """
@@ -29,23 +28,15 @@ class Solution(object):
         :rtype: int
         """
         '''
-        方法一 迭代
+        模运算
         '''
+        start = 0
         nums = list(range(n))
-
-        def helper(nums, m, start):
-            if len(nums) == 1:
-                return nums[0]
-            index = (m - 1 + start) % len(nums)
-            start += m - 1
+        while len(nums) != 1:
+            index = (start + m - 1) % len(nums)
             nums.pop(index)
-            return helper(nums, m, start)
-
-        return helper(nums, m, 0)
-        #
-        # '''
-        # 方法二 递归
-        # '''
+            start = index
+        return nums[0]
 
 
 if __name__ == "__main__":

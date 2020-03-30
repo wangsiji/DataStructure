@@ -13,10 +13,25 @@
 
 限制： 1 <= s 的长度 <= 8
 """
-# TODO
+
 
 class Solution(object):
 
+
+    def stringSort(self, s, tmp, res):
+        if len(s) == 1:
+            tmp.append(s[0])
+            res.append("".join(tmp))
+            tmp.pop()
+            return
+        for i in range(len(s)):
+            if i != 0 and s[i] == s[0]:
+                continue
+            s[0], s[i]= s[i], s[0]
+            tmp.append(s[0])
+            self.stringSort(s[1:], tmp, res)
+            tmp.pop()
+            s[i], s[0] = s[0], s[i]
     def permutation(self, s):
         """
         :type s: str
@@ -30,7 +45,16 @@ class Solution(object):
                 然后把第一个字符逐一和它后面的字符交换.
             第三步,算法最后的结果可能会有重复的情况出现,我们使用python自带的set()函数来去重
         '''
-        pass
+        res = []
+        nums = list(s)
+        def backtrack(nums, tmp):
+            if not nums:
+                res.append(''.join(tmp))
+                return
+            for i in range(len(nums)):
+                backtrack(nums[:i] + nums[i + 1:], tmp + [nums[i]])
+        backtrack(nums, [])
+        return list(set(res))
 
 
 if __name__ == "__main__":

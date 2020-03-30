@@ -22,8 +22,6 @@
 """
 
 
-# TODO
-
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -108,4 +106,4 @@ if __name__ == "__main__":
     root = tree.root
     p = root.left
     q = root.right
-    print(Solution().lowestCommonAncestor(root, p, q))
+    print(Solution().lowestCommonAncestor(root, p, q).val)
