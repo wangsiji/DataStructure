@@ -66,8 +66,12 @@ class Solution(object):
         """
 
         def recur(A, B):
+            # 当节点 B 为空：说明树 B 已匹配完成（越过叶子节点），因此返回 true ；
             if not B: return True
+            # 当节点 A 为空：说明已经越过树 A 叶子节点，即匹配失败，返回 false
+            # 当节点 A 和 B 的值不同：说明匹配失败，返回 false ；
             if not A or A.val != B.val: return False
             return recur(A.left, B.left) and recur(A.right, B.right)
+
 
         return recur(A, B) or self.isSubStructure(A.left, B) or self.isSubStructure(A.right, B) if A and B else False
