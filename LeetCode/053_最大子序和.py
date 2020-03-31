@@ -34,8 +34,6 @@ class Solution(object):
         """
 
         '''空间复杂度O(n)'''
-        if len(nums) < 2:
-            return nums[0]
         dp = [0 for _ in range(len(nums))]
         dp[0] = nums[0]
         for i in range(1, len(nums)):
@@ -52,5 +50,5 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+    nums = [-2, 1]
     print(Solution().maxSubArray(nums))
