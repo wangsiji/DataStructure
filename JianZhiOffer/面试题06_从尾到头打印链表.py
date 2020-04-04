@@ -52,6 +52,7 @@ class Solution:
         """
         方法二 递归
         """
+        # 出口
         if not listNode:
             return []
         return self.printListFromTailToHead(listNode.next) + [listNode.val]
