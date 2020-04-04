@@ -30,14 +30,30 @@ class Solution(object):
         :rtype: int
         """
         '''
+        动态规划：
         状态数组dp[i]表示：数字 i 拆分为至少两个正整数之和的最大乘积。为了方便计算，dp 的长度是 n + 1，值初始化为 1。
         '''
-        dp = [1 for _ in range(n + 1)]
-        for i in range(3, n + 1):
-            for j in range(1, i):
-                dp[i] = max(dp[i], j * (i - j), dp[j] * (i - j))
-        return dp[-1]
+        # dp = [1 for _ in range(n + 1)]
+        # for i in range(3, n + 1):
+        #     for j in range(1, i):
+        #         dp[i] = max(dp[i], j * (i - j), dp[j] * (i - j))
+        # return dp[-1]
+        '''
+        数学
+        贪心法则：尽可能分解出多的3，3 的个数为 a，得到余数 b 可能为 0，1，2：
+
+        b = 0，返回 3**a；
+        b = 1，我们将末尾的的3+1分解成2×2，因此返回 3**(a-1)*4
+        b = 2，返回 3**a * 2 
+        '''
+        import math
+        if n < 4: return n - 1
+        a, b = n // 3, n % 3
+        if b == 0: return int(math.pow(3, a))
+        if b == 1: return int(math.pow(3, a - 1) * 4)
+        return int(math.pow(3, a) * 2)
+
 
 
 if __name__ == "__main__":
-    print(Solution().cuttingRope(10))
+    print(Solution().cuttingRope(3))
