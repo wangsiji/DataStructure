@@ -25,14 +25,6 @@ n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。
 
 
 class Solution(object):
-    def fastPow(self, x, n):
-        if n == 0:
-            return 1.0
-        half = self.fastPow(x, n // 2)
-        if n % 2 == 0:
-            return half * half
-        else:
-            return half * half * x
 
     def myPow(self, x, n):
         """
@@ -56,10 +48,20 @@ class Solution(object):
         时间复杂度：O(logn) 空间复杂度：O(logn)
         假定我们已经得到了 x**n 的结果, 如何得到 x**2n? ==> (x**n)*2 ==> 一次计算
         '''
+
+        def fastPow(x, n):
+            if n == 0:
+                return 1.0
+            half = fastPow(x, n // 2)
+            if n % 2 == 0:
+                return half * half
+            else:
+                return half * half * x
+
         if n < 0:
             n = -n
             x = 1 / x
-        return self.fastPow(x, n)
+        return fastPow(x, n)
 
 
 if __name__ == "__main__":
