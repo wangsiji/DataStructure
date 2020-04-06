@@ -40,6 +40,7 @@ class Solution(object):
         # return res
         '''
         方法二 动态规划
+        dp[i] 表示第i个丑数
         '''
         dp = [0 for _ in range(n)]
         dp[0] = 1
@@ -52,6 +53,7 @@ class Solution(object):
                 i3 += 1
             if dp[i] == dp[i5] * 5:
                 i5 += 1
+            print(dp)
         return dp[-1]
 
 if __name__ == "__main__":

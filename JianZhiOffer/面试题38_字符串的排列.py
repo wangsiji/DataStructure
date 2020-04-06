@@ -16,22 +16,6 @@
 
 
 class Solution(object):
-
-
-    def stringSort(self, s, tmp, res):
-        if len(s) == 1:
-            tmp.append(s[0])
-            res.append("".join(tmp))
-            tmp.pop()
-            return
-        for i in range(len(s)):
-            if i != 0 and s[i] == s[0]:
-                continue
-            s[0], s[i]= s[i], s[0]
-            tmp.append(s[0])
-            self.stringSort(s[1:], tmp, res)
-            tmp.pop()
-            s[i], s[0] = s[0], s[i]
     def permutation(self, s):
         """
         :type s: str

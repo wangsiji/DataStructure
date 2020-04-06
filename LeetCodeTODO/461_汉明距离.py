@@ -52,7 +52,6 @@ class Solution(object):
             xor = xor >> 1
         return distance
 
-        print(1 & 0)
 
 
 if __name__ == "__main__":

@@ -23,22 +23,14 @@ class Solution(object):
         :rtype: str
         """
         '''普通字典'''
-        # lookup = {}
-        # for i in s:
-        #     lookup[i] = lookup.get(i, 0) + 1
-        # for i in s:
-        #     if lookup[i] == 1:
-        #         return i
-        # return " "
-        import collections
-        lookup = collections.OrderedDict()
-        for i in s:
-            lookup[i] = lookup.get(i, 0) + 1
-        for key, value in lookup.items():
-            if value == 1:
-                return key
-
+        lookup = {}
+        # 大于一次 value为False
+        for c in s:
+            lookup[c] = not c in lookup
+        for c in s:
+            if lookup[c]: return c
         return " "
+
 
 
 if __name__ == "__main__":
