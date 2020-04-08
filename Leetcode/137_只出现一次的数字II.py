@@ -40,10 +40,21 @@ class Solution(object):
             |	按位或 ，二进制位数或有1结果位为1
             ^	按位异或 ，二进制位数不同结果位为1
             ~	按位取反，二进制位0和1结果位互换
-            
-
-        
         '''
+        bitSum = [0] * 32
+
+        # 统计各位之和
+        for i in nums:
+            mask = 1
+            for j in reversed(range(32)):
+                if mask & i :
+                    bitSum[j] += 1
+                mask <<= 1
+        res = 0
+        for i in range(32):
+            res <<= 1
+            res += bitSum[i] % 3
+        return res
 
 
 
