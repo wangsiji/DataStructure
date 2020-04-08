@@ -4,8 +4,6 @@
 # @File    : 090_子集II.py
 # @Desc    :
 
-# TODO
-
 
 """
 给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
@@ -33,7 +31,7 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         res = []
-
+        nums.sort()
         def backtrack(nums, tmp):
             if tmp not in res:
                 res.append(tmp)
@@ -45,5 +43,5 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    nums = [1, 2, 2]
+    nums = [4,4,4,1,4]
     print(Solution().subsetsWithDup(nums))

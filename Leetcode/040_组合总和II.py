@@ -5,7 +5,6 @@
 # @Desc    :
 
 
-# TODO
 """
 
 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
@@ -43,7 +42,26 @@ class Solution(object):
         :type target: int
         :rtype: List[List[int]]
         """
-        pass
+        res = []
+        if not candidates: return res
+        if min(candidates) > target: return res
+        candidates.sort()
+
+        def backtrack(candidates, target, tmp):
+            if not target:
+                res.append(tmp)
+            if target < 0: return
+            for i in range(len(candidates)):
+                if candidates[i] > target: break
+                # 避免相同层级的重复
+                backtrack(candidates[i + 1:], target - candidates[i], tmp + [candidates[i]])
+
+        backtrack(candidates, target, [])
+        print(res)
+        # 去重
+        new_res = [list(t) for t in set(tuple(_) for _ in res)]
+        return new_res
+
 
 if __name__ == "__main__":
     candidates = [2, 5, 2, 1, 2]

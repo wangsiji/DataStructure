@@ -4,7 +4,7 @@
 # @File    : 039_组合总和.py
 # @Desc    : 回溯算法 + 剪枝
 
-# TODO
+
 """
 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
 candidates 中的数字可以无限制重复被选取。
@@ -31,7 +31,6 @@ candidates 中的数字可以无限制重复被选取。
 """
 
 
-
 class Solution(object):
     def combinationSum(self, candidates, target):
         """
@@ -43,3 +42,24 @@ class Solution(object):
         候选数组里有 2 ，如果找到了 7 - 2 = 5 的所有组合，再在之前加上 2 ，就是 7 的所有组合；
         同理考虑 3，如果找到了 7 - 3 = 4 的所有组合，再在之前加上 3 ，就是 7 的所有组合，依次这样找下去；
         '''
+        res = []
+        if not candidates: return res
+        if min(candidates) > target: return res
+        candidates.sort()
+
+        def backtrack(candidates, target, tmp):
+            if target == 0: res.append(tmp)
+            if target < 0: return
+            for i in range(len(candidates)):
+                if candidates[i] > target:
+                    break
+                backtrack(candidates[i:], target - candidates[i], tmp + [candidates[i]])
+
+        backtrack(candidates, target, [])
+        return res
+
+
+if __name__ == "__main__":
+    candidates = [2, 3, 6, 7]
+    target = 7
+    print(Solution().combinationSum(candidates, target))

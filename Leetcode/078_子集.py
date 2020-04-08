@@ -66,6 +66,7 @@ class Solution(object):
 
         def backtrack(nums, tmp):
             res.append(tmp)
+            print(res)
             for i in range(len(nums)):
                 backtrack(nums[i + 1:], tmp + [nums[i]])
 
