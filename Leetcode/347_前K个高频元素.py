@@ -20,7 +20,7 @@
 你可以假设给定的 k 总是合理的，且 1 ≤ k ≤ 数组中不相同的元素的个数。
 你的算法的时间复杂度必须优于 O(n log n) , n 是数组的大小。
 """
-# TODO
+
 
 class Solution(object):
     def topKFrequent(self, nums, k):
@@ -29,7 +29,19 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
-        pass
+        '''
+        堆中添加一个元素的复杂度是 O(log(k))，要进行 N 次复杂度是 O(N)。
+        最后一步是输出结果，复杂度为 O(klog(k))。
+
+        时间复杂度：O(Nlog(k))。Counter 方法的复杂度是O(N)，建堆和输出的复杂度是 O(Nlog(k))。
+                因此总复杂度为 O(N+Nlog(k))=O(Nlog(k))。
+        空间复杂度：O(N)，存储哈希表的开销。
+        '''
+        import heapq
+        import collections
+        count = collections.Counter(nums)
+        return heapq.nlargest(k, count.keys(), key=count.get)
+
 
 if __name__ == "__main__":
     nums = [1, 1, 1, 2, 2, 3]
