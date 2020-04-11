@@ -18,9 +18,7 @@
             /   \
           20     13
 """
-
-
-# TODO
+#TODO
 
 class TreeNode(object):
     def __init__(self, x):
@@ -68,13 +66,23 @@ def breadth_travel(root):
 
 
 class Solution(object):
+    def __init__(self):
+        self.total = 0
+
     def convertBST(self, root):
         """
         :type root: TreeNode
         :rtype: TreeNode
         """
-        pass
-
+        '''
+        方法一 回溯
+        '''
+        if root:
+            self.convertBST(root.right)
+            self.total += root.val
+            root.val = self.total
+            self.convertBST(root.left)
+        return root
 
 if __name__ == "__main__":
     nums = [5, 2, 13]
@@ -83,3 +91,4 @@ if __name__ == "__main__":
         tree.add(num)
     print(breadth_travel(tree.root))
     print(Solution().convertBST(tree.root))
+    print(breadth_travel(Solution().convertBST(tree.root)))
