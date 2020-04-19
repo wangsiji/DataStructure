@@ -22,6 +22,7 @@
 注意:输入的字符串长度不会超过1000。
 """
 
+
 # TODO
 class Solution(object):
     def countSubstrings(self, s):
@@ -29,9 +30,30 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+
         '''
-        方法一 从中心往两侧延伸
+        方法一 动态规划
+        dp[i][j]表示s[i:j]是否是回文
+        状态转移方程：当 s[i] == s[j] && (j - i < 2 || dp[i + 1][j - 1]) 时，dp[i][j]=true，否则为false
+            1.当只有一个字符时，比如a自然是一个回文串。
+            2.当有两个字符时，如果是相等的，比如aa，也是一个回文串。
+            3.当有三个及以上字符时，比如ababa这个字符记作串1，把两边的a去掉，也就是bab记作串2，可以看出只要串2是一个回文串，
+              那么左右各多了一个a的串1必定也是回文串。所以当s[i]==s[j]时，自然要看dp[i+1][j-1]是不是一个回文串。
         '''
+        dp = [[False for _ in range(len(s))] for _ in range(len(s))]
+        res = 0
+        for i in range(len(s)):
+            for j in range(i + 1):
+                if s[i] == s[j] and (i- j < 2 or dp[j+1][i-1] ):
+                    dp[i][j] = True
+                    res += 1
+        print(dp)
+        return res
+
+
+        # '''
+        # 方法一 从中心往两侧延伸
+        # '''
         # n = len(s)
         # ans = 0
         # # 在长度为 N 的字符串中，可能的回文串中心位置有 2N-1 个：字母，或两个字母中间。
@@ -46,17 +68,6 @@ class Solution(object):
         # return ans
 
 
-        '''
-        方法二 动态规划 
-        dp[i][j] 代表str[i] - str[j]是否是回文子串
-        状态转移方程：
-            dp[i][j] = dp[i+1][j-1] && str[i]==str[j]
-        '''
-        res = 0
-
-
-
-
 if __name__ == "__main__":
-    s = "aaa"
+    s = "aaaaa"
     print(Solution().countSubstrings(s))

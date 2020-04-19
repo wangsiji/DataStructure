@@ -17,7 +17,6 @@
 
 进阶：你能尝试使用一趟扫描实现吗？
 """
-#TODO
 
 class ListNode(object):
     def __init__(self, x):

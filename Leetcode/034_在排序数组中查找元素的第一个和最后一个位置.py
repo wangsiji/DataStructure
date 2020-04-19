@@ -48,27 +48,29 @@ class Solution(object):
         方法二 二分查找
         '''
         # 第一次二分查找
-        left , right = 0, len(nums)
+        left, right = 0, len(nums)
         while left < right:
             mid = (left + right) // 2
-            if nums[mid] >=  target:
+            if nums[mid] >= target:
                 right = mid
             else:
                 left = mid + 1
         left_index = left
         if left_index == len(nums) and nums[left_index] != target:
             return [-1, -1]
+
         # 第二次二分查找
-        left , right = 0, len(nums)
+        left, right = 0, len(nums)
         while left < right:
             mid = (left + right) // 2
-            if nums[mid] <=  target:
+            if nums[mid] <= target:
                 left = mid + 1
             else:
                 right = mid
-        return [left_index, right-1]
+        return [left_index, right - 1]
+
 
 if __name__ == "__main__":
-    nums = [1]
-    target = 1
+    nums = [1, 2, 2, 3, 4, 5, 6]
+    target = 2
     print(Solution().searchRange(nums, target))
