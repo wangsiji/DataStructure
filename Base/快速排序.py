@@ -12,16 +12,15 @@
 """
 
 
-def quick_sort(alist):
-    if len(alist) < 2:
-        return alist
+def quick_sort(nums):
+    if len(nums) < 2:
+        return nums
     else:
-        pivot = alist[0]
-        less = [i for i in alist[1:] if i < pivot]
-        greater = [i for i in alist[1:] if i > pivot]
+        pivot = nums[0]
+        less = [i for i in nums[1:] if i < pivot]
+        greater = [i for i in nums[1:] if i > pivot]
         return quick_sort(less) + [pivot] + quick_sort(greater)
 
 
-alist = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-print(quick_sort(alist))
-print(alist)
+numsA = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+print(quick_sort(numsA))

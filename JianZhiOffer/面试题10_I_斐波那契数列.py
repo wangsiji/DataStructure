@@ -27,23 +27,24 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        '''方法一'''
+        '''方法一 迭代'''
         # if n == 0:
         #     return 0
         # if n == 1:
         #     return 1
-        # dp = [0 for _ in range(n + 1)]
-        # dp[0] = 0
-        # dp[1] = 1
-        # for i in range(2, n + 1):
-        #     dp[i] = dp[i - 1] + dp[i - 2]
-        # return dp[-1] % 1000000007
-        '''方法二'''
-        a, b = 0, 1
-        for _ in range(n):
-            a, b = b, a + b
-        return a % 1000000007
+        # a, b = 0, 1
+        # for _ in range(2, n+1):
+        #     a, b = b, a + b
+        # return b
+
+        '''方法二 递归'''
+        # if n == 0:
+        #     return 0
+        # if n == 1:
+        #     return 1
+        # return self.fib(n - 1) + self.fib(n - 2)
 
 
 if __name__ == "__main__":
-    print(Solution().fib(5))
+    # 0 1 1 2 3 5 8
+    print(Solution().fib(6))

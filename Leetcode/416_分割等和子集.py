@@ -39,36 +39,37 @@ class Solution(object):
         
         
          '''
-        # n = len(nums)
-        # target = sum(nums)
-        # if target % 2 != 0:
-        #     return False
-        # target //= 2
-        # dp = [[False] * (target + 1) for _ in range(n)]
-        # for i in range(1, target + 1):
-        #     if nums[0] == i:
-        #         dp[0][i] = True
-        #         break
-        # for i in range(1, n):
-        #     for j in range(target + 1):
-        #         if j >= nums[i]:
-        #             dp[i][j] = dp[i - 1][j] or (dp[i - 1][j - nums[i]])
-        #         else:
-        #             dp[i][j] = dp[i - 1][j]
-        # return dp[-1][-1]
+        n = len(nums)
+        target = sum(nums)
+        if target % 2 != 0:
+            return False
+        target //= 2
+        dp = [[False] * (target + 1) for _ in range(n)]
+        for i in range(1, target + 1):
+            if nums[0] == i:
+                dp[0][i] = True
+                break
+        for i in range(1, n):
+            for j in range(target + 1):
+                if j >= nums[i]:
+                    dp[i][j] = dp[i - 1][j] or (dp[i - 1][j - nums[i]])
+                else:
+                    dp[i][j] = dp[i - 1][j]
+        print(dp)
+        return dp[-1][-1]
 
         '''
         方法二 压缩空间
         '''
-        target, mod = divmod(sum(nums), 2)
-        if mod != 0:
-            return False
-        dp = [False for _ in range(target + 1)]
-        dp[0] = True
-        for i in range(len(nums)):
-            for j in range(target, nums[i] - 1, -1):
-                dp[j] = dp[j] or dp[j - nums[i]]
-        return dp[-1]
+        # target, mod = divmod(sum(nums), 2)
+        # if mod != 0:
+        #     return False
+        # dp = [False for _ in range(target + 1)]
+        # dp[0] = True
+        # for i in range(len(nums)):
+        #     for j in range(target, nums[i] - 1, -1):
+        #         dp[j] = dp[j] or dp[j - nums[i]]
+        # return dp[-1]
 
 
 if __name__ == "__main__":

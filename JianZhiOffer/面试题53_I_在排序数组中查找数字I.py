@@ -49,18 +49,18 @@ class Solution(object):
         方法三 二分查找
         时间复杂度O(logn),空间复杂度O(1)
         '''
-        # if not nums:
-        #     return 0
-        # mid = len(nums) // 2
-        # if nums[mid] == target:
-        #     self.count += 1
-        #     self.search(nums[:mid], target)
-        #     self.search(nums[mid+1:], target)
-        # elif nums[mid] < target:
-        #     self.search(nums[mid+1:], target)
-        # else:
-        #     self.search(nums[:mid], target)
-        # return self.count
+        if not nums:
+            return 0
+        mid = len(nums) // 2
+        if nums[mid] == target:
+            self.count += 1
+            self.search(nums[:mid], target)
+            self.search(nums[mid+1:], target)
+        elif nums[mid] < target:
+            self.search(nums[mid+1:], target)
+        else:
+            self.search(nums[:mid], target)
+        return self.count
 
 
 if __name__ == "__main__":
