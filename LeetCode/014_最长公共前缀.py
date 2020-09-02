@@ -73,10 +73,6 @@ class Solution(object):
 
 
 
-
-        """方法四 分治"""
-
-
 if __name__ == "__main__":
     strs = ["flower", "flow", "flight"]
     print(Solution().longestCommonPrefix3(strs))
